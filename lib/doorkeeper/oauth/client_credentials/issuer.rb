@@ -28,7 +28,7 @@ module Doorkeeper
             client,
             scopes,
             use_refresh_token: false,
-            expires_in: @server.access_token_expires_in
+            expires_in: Authorization::Token.access_token_expires_in(@server, client)
           )
         end
       end
