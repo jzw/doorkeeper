@@ -10,6 +10,7 @@ module Doorkeeper
         end
 
         def self.access_token_expires_in(server, pre_auth)
+          binding.pry
           override_expiration = server.parameters[:expires_in]
 
           custom_expiration = server.
