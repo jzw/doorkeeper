@@ -10,10 +10,14 @@ module Doorkeeper
         end
 
         def self.access_token_expires_in(server, pre_auth)
+          override_expiration = server.parameters[:expires_in]
+
           custom_expiration = server.
             custom_access_token_expires_in.call(pre_auth)
 
-          if custom_expiration
+          if override_expiration
+            override_expiration
+          elsif custom_expiration
             custom_expiration
           else
             server.access_token_expires_in
